@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises</title>
+</head>
+<body>
+
+
+    <!-- <script>
+        const firstFunction = (callback) =>{
+            setTimeout(() =>{
+                console.log('hello');
+                callback();
+            },1000);
+        }
+
+        const secFunction = (callback) =>{
+            setTimeout(() => {
+                console.log('2nd hello');
+                callback();
+            }, 2000);
+        }
+
+        const thirdFunction = (callback) =>{
+            setTimeout(() => {
+                console.log('3rd hello');
+                callback();
+            }, 3000);
+        }
+
+        firstFunction(()=>{
+            secFunction(()=>{
+                thirdFunction(()=>console.log('All Done'));
+            })
+        }) 
+
+    </script> -->
+
+
+    <script>
+
+    const firstFunction = () => {
+            return new Promise((resolve,reject) =>{
+                if(1){
+                    setTimeout(() => {
+                        console.log('first hello');
+                        resolve();
+                    }, 1000);
+                }else{
+                    reject('rejected');
+                }
+            });
+        }
+
+        const secFunction = () => {
+            return new Promise((resolve,reject) =>{
+                if(1){
+                    setTimeout(() => {
+                        console.log('second hello');
+                        resolve();
+                    }, 2000);
+                }else{
+                    reject('rejected');
+                }
+            });
+        };
+
+        const thirdFunction = () => {
+            return new Promise((resolve,reject) =>{
+                if(1){
+                    setTimeout(() => {
+                        console.log('third hello');
+                        resolve();
+                    }, 3000);
+                }else{
+                    reject('rejected');
+                }
+            });
+        };
+
+        // firstFunction()
+        //     .then(() => secFunction())
+        //     .then(() => thirdFunction())
+        //     .then(() => console.log('all done'));
+
+
+        const doSync = async()=>{
+            try{
+                await firstFunction()
+                await secFunction()
+                await thirdFunction()
+                console.log('Done')
+            }
+            catch(err){
+                console.log('error occured',err);
+            }
+        }
+            
+        doSync();
+
+
+    </script>
+
+    
+</body>
+</html>
+

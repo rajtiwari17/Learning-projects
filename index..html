@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" onclick=startfun() id='start' value="start">
+    <button type="button" id="stop">stop</button>
+
+    <script>
+        
+        let intervalid;
+        function startfun() {
+            console.log('start is clicked');
+        }
+
+        const randomcolor = () => {
+            let hexColor = Math.floor(Math.random() * 28446383).toString(16);
+            return '#' + ('000000' + hexColor).slice(-6);
+
+        }
+
+        const startInterval = () =>{
+            const changeBg= () =>{
+                document.body.style.backgroundColor = randomcolor();
+                console.log('the time is',Date.now(),document.body);
+            };
+            !intervalid ? (intervalid = setInterval(changeBg,1000)):null;
+        }
+
+        const stopInterval = () => {
+            clearInterval(intervalid);
+            intervalid = null;
+        }
+
+        document.querySelector('#stop').addEventListener('click', stopInterval);
+        document.querySelector('#start').addEventListener('click', startInterval);
+
+    </script>
+
+</body>
+
+</html>
